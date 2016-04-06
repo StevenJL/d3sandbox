@@ -43,6 +43,7 @@ function createForceLayout(nodes, edges) {
 
   var force = d3.layout.force().charge(-1000)
    .size([500,500])
+   .linkDistance(50)
    .nodes(nodes)
    .links(edges)
    .on("tick", forceTick);
@@ -57,7 +58,7 @@ function createForceLayout(nodes, edges) {
    .style("stroke-width", function(d) {return d.weight});
 
   nodeEnter.append("circle")
-   .attr("r", 5)
+   .attr("r", 20)
    .style("fill", "lightgray")
    .style("stroke", "black")
    .style("stroke-width", "1px");
@@ -81,5 +82,6 @@ function createForceLayout(nodes, edges) {
 
   d3.selectAll("line").attr("marker-end", "url(#Triangle)")
   force.start();
+  d3.selectAll("g.node").call(force.drag());
 }
 
