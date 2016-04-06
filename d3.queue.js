@@ -1,4 +1,4 @@
-import {slice} from "./array";
+var slice = [].slice;
 
 var noabort = {};
 
@@ -101,7 +101,6 @@ function maybeNotify(q) {
   if (!q._active && q._call) q._call(q._error, q._data);
 }
 
-export default function queue(concurrency) {
-  return new Queue(arguments.length ? +concurrency : Infinity);
+function queue(concurrency) {
+    return new Queue(arguments.length ? +concurrency : Infinity);
 }
-
